@@ -1,5 +1,10 @@
 local Ui = {
-	DefaultEditorContent = [=[--[[Hooks rewritten and many more fixes!]]]=],
+	DefaultEditorContent = [=[--[[
+	Sigma Spy, written by depso
+	Hooks rewritten and many more fixes!
+
+	Discord: https://discord.gg/bkUkm2vSbv
+]]]=],
 	LogLimit = 100,
     SeasonLabels = { 
         January = "⛄ %s ⛄", 
@@ -69,7 +74,7 @@ type Log = {
 local SetClipboard = setclipboard or toclipboard or set_clipboard
 
 --// Libraries
-local ReGui = loadstring(game:HttpGet("https://raw.githubusercontent.com/EnemySaga/Remake-Spy/refs/heads/main/src/lib/ReGui.lua"))()
+local ReGui = loadstring(game:HttpGet('https://github.com/EnemySaga/Dear-ReGui/raw/refs/heads/main/ReGui.lua'), "ReGui")()
 
 --// Modules
 local Flags
