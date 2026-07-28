@@ -69,7 +69,7 @@ type Log = {
 local SetClipboard = setclipboard or toclipboard or set_clipboard
 
 --// Libraries
-local ReGui = require(ReGui)
+local ReGui = loadstring(game:HttpGet("https://raw.githubusercontent.com/EnemySaga/Remake-Spy/refs/heads/main/src/lib/ReGui.lua"))()
 
 --// Modules
 local Flags
