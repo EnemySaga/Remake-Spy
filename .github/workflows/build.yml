@@ -14,6 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # 1. Properly installs Lune standalone binary
       - name: Setup Lune Runtime
         run: |
           LUNE_VERSION="0.10.5"
@@ -23,14 +24,31 @@ jobs:
           sudo chmod +x /usr/local/bin/lune
           rm -rf lune-${LUNE_VERSION}-linux-x86_64.zip lune-temp
 
+      # 2. Installs Darklua for the minification step
       - name: Install Darklua
         run: |
           cargo install darklua
 
+      # 3. Automatically finds and runs your build.lua and config.json
       - name: Run Build Script
         run: |
-          lune run build.lua build/config.json
+          # Dynamically find the files in the repository
+          BUILD_SCRIPT=$(find . -name "build.lua" -type f | head -n 1)
+          CONFIG_FILE=$(find . -name "config.json" -type f | head -n 1)
           
+          echo "Found build script at: $BUILD_SCRIPT"
+          echo "Found config file at: $CONFIG_FILE"
+          
+          # Fail the job safely if the script is completely missing from the repo
+          if [ -z "$BUILD_SCRIPT" ]; then
+            echo "Error: build.lua not found in the repository!"
+            exit 1
+          fi
+          
+          # Run Lune with the found file paths
+          lune run "$BUILD_SCRIPT" "$CONFIG_FILE"
+          
+      # 4. Uploads Main.lua (as defined in config.json)
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
