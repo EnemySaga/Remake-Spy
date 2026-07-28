@@ -3,8 +3,8 @@ local Configuration = {
 	UseWorkspace = false, 
 	NoActors = false,
 	FolderName = "Sigma Spy",
-	RepoUrl = [[https://raw.githubusercontent.com/EnemySaga/Remake-Spy/refs/heads/main]],
-	ParserUrl = [[https://raw.githubusercontent.com/IEnemyFiles/Roblox-Parser/refs/heads/main/Main.luau]],
+	RepoUrl = "https://raw.githubusercontent.com/EnemySaga/SigmaSpy-Remake/refs/heads/main",
+	ParserUrl = "https://raw.githubusercontent.com/IEnemyFiles/Roblox-Parser/refs/heads/main/Main.luau"
 }
 
 --// Load overwrites
