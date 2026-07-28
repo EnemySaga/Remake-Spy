@@ -15,9 +15,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Lune Runtime
-        uses: lune-org/setup-lune@v1
-        with:
-          version: latest
+        run: |
+          LUNE_VERSION="0.8.6" # Change to the version you prefer or latest
+          wget https://github.com/lune-org/lune/releases/download/v${LUNE_VERSION}/lune-${LUNE_VERSION}-linux-x86_64.zip
+          unzip lune-${LUNE_VERSION}-linux-x86_64.zip
+          sudo mv lune-* /usr/local/bin/lune
+          sudo chmod +x /usr/local/bin/lune
 
       - name: Install Darklua
         run: |
@@ -25,7 +28,7 @@ jobs:
 
       - name: Run Build Script
         run: |
-          lune run scripts/build.luau build/config.json
+          lune run build.luau config.json
           
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
