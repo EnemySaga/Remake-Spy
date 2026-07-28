@@ -16,11 +16,12 @@ jobs:
 
       - name: Setup Lune Runtime
         run: |
-          LUNE_VERSION="0.8.6" # Change to the version you prefer or latest
+          LUNE_VERSION="0.10.5"
           wget https://github.com/lune-org/lune/releases/download/v${LUNE_VERSION}/lune-${LUNE_VERSION}-linux-x86_64.zip
-          unzip lune-${LUNE_VERSION}-linux-x86_64.zip
-          sudo mv lune-* /usr/local/bin/lune
+          unzip lune-${LUNE_VERSION}-linux-x86_64.zip -d lune-temp
+          sudo mv lune-temp/lune /usr/local/bin/lune
           sudo chmod +x /usr/local/bin/lune
+          rm -rf lune-${LUNE_VERSION}-linux-x86_64.zip lune-temp
 
       - name: Install Darklua
         run: |
